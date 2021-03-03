@@ -9,26 +9,39 @@
   </head>
   <body>
     <div id="space">
-      <div id="earth">
+      <div id="mars" class="planet">
         <div class="inputBox">
-          <input type="text" />
-          <div class="convertBox"></div>
+          <input type="text" placeholder="화성 => 지구 전송 메세지" />
+          <div class="convertedBox"></div>
           <button>지구로 보내기</button>
         </div>
         <div class="transceiver"></div>
-        <div class="hexadecimal"></div>
-        <div class="people"></div>
-      </div>
-      <div class="between"></div>
-      <div id="mars">
         <div class="inputBox">
-          <input type="text" />
-          <div class="convertBox"></div>
+          <div id="watney"></div>
+          <input type="text" placeholder="수신 대기 중" />
+          <button>해석하기</button>
+        </div>
+      </div>
+      <div class="between">
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <div id="earth" class="planet">
+        <div class="inputBox">
+          <input type="text" placeholder="지구 => 화성 전송 메세지" />
+          <div class="convertedBox"></div>
           <button>화성으로 보내기</button>
         </div>
         <div class="transceiver"></div>
-        <div class="hexadecimal"></div>
-        <div id="watney"></div>
+        <div class="inputBox">
+          <input type="text" placeholder="수신 대기 중" />
+          <button>해석하기</button>
+        </div>
       </div>
     </div>
     <script src="./main.js"></script>

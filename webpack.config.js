@@ -1,6 +1,6 @@
 import path from "path";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import HtmlWebpackPlugin from "html-webpack-plugin";
+import HtmlWebPackPlugin from "html-webpack-plugin";
 const __dirname = path.resolve();
 
 export default {
@@ -18,8 +18,8 @@ export default {
     new MiniCssExtractPlugin({
       filename: "[name].css",
     }),
-    new HtmlWebpackPlugin({
-      template: "dist/index.html",
+    new HtmlWebPackPlugin({
+      template: "./dist/index.html",
     }),
   ],
   devServer: {

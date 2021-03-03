@@ -1,6 +1,7 @@
 * {
   padding: 0;
   margin: 0;
+  outline: 1px solid red;
 }
 html,
 body {
@@ -15,7 +16,60 @@ body {
   background-size: cover;
 
   display: flex;
-  .inputBox {
-    flex: 1;
+  justify-content: space-around;
+  align-items: center;
+  .planet {
+    width: 40%;
+    border-radius: 2rem;
+    background: white;
+    height: 95%;
+    .inputBox {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 2rem;
+
+      input {
+        width: 70%;
+        text-align: center;
+        padding: 0.5rem 0;
+      }
+      .convertedBox {
+        margin-top: 1rem;
+        height: 2rem;
+        border: 1px solid black;
+        width: 70%;
+      }
+      button {
+        margin-top: 1rem;
+        padding: 0.5rem 3rem;
+      }
+    }
   }
+}
+.between {
+  width: 10%;
+  ul {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    li {
+      list-style-type: none;
+      width: 15%;
+      height: 0;
+      padding-bottom: 15%;
+      border-radius: 50%;
+      background: rgb(151, 142, 142);
+    }
+  }
+}
+#watney {
+  position: absolute;
+  left: 0;
+  width: 98px;
+  height: 128px;
+  background-image: url(../img/man.png);
+  background-repeat: none;
+  background-size: cover;
 }

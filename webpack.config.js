@@ -22,6 +22,14 @@ export default {
         exclude: /node_modules/,
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
+      {
+        test: /\.(png|jp(e*)g)$/,
+        loader: "url-loader",
+        options: {
+          limit: 8000,
+          name: "images/[hash]-[name].[ext]",
+        },
+      },
     ],
   },
 };

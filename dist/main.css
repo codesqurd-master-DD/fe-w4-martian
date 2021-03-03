@@ -1,6 +1,13 @@
 * {
   padding: 0;
-  margin: 0; }
+  margin: 0;
+}
 
+#space {
+  width: 500px;
+  height: 500px;
+  background: tan;
+  background-image: url(images/3d9feaec22b29127d0516321019f7b53-space.jpg);
+}
 
 /*# sourceMappingURL=main.css.map*/

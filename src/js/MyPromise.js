@@ -12,11 +12,13 @@ export default class MyPromise {
   then(onFulfilled) {
     switch (this.status) {
       case "pending": {
+        console.log("pending");
         return new MyPromise((resolve) => {
           this.fulFilledFn.push(() => resolve(onFulfilled(this.promiseResult)));
         });
       }
       case "fulfilled": {
+        console.log("fulfilled");
         return new MyPromise((resolve) =>
           resolve(onFulfilled(this.promiseResult))
         );
@@ -67,15 +69,29 @@ export default class MyPromise {
 const original = new Promise((resolve, reject) => {
   reject("hello");
 })
+  .then((v) => {
+    console.log(1);
+    return v;
+  })
+  .then((v) => {
+    console.log(2);
+    return v;
+  })
+  .catch((err) => console.log(err))
+
+original
+  .then((v) => console.log(v + " test1"))
   .then((v) => v + " test1")
   .then((v) => v + " test2")
   .then((v) => console.log(v))
   .catch((err) => console.log(err));
 
 const copy = new MyPromise((resolve, reject) => {
-  resolve("hello");
-})
+  resolve(11);
+});
+console.log(copy)
   .then((v) => v + " test1")
   .then((v) => v + " test2")
   .then((v) => console.log(v))
   .catch((err) => console.log(err));
+console.log(copy);

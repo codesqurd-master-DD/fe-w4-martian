@@ -1,5 +1,6 @@
 import path from "path";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 const __dirname = path.resolve();
 
 export default {
@@ -7,6 +8,9 @@ export default {
   devtool: "source-map",
   entry: ["./src/js/main.js"],
   watch: true,
+  devServer: {
+    hot: true,
+  },
   output: {
     path: path.resolve(__dirname, "dist"),
   },
@@ -14,7 +18,14 @@ export default {
     new MiniCssExtractPlugin({
       filename: "[name].css",
     }),
+    new HtmlWebpackPlugin({
+      template: "dist/index.html",
+    }),
   ],
+  devServer: {
+    port: 8080,
+    hot: true,
+  },
   module: {
     rules: [
       {

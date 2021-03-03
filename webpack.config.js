@@ -11,6 +11,7 @@ export default {
   devServer: {
     hot: true,
   },
+
   output: {
     path: path.resolve(__dirname, "dist"),
   },
@@ -41,6 +42,7 @@ export default {
           name: "images/[hash]-[name].[ext]",
         },
       },
+
     ],
   },
 };

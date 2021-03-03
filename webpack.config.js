@@ -9,6 +9,7 @@ export default {
   entry: ["./src/js/main.js"],
   watch: true,
   devServer: {
+    port: 8080,
     hot: true,
   },
   output: {
@@ -19,13 +20,9 @@ export default {
       filename: "[name].css",
     }),
     new HtmlWebPackPlugin({
-      template: "./dist/index.html",
+      template: "./src/index.html",
     }),
   ],
-  devServer: {
-    port: 8080,
-    hot: true,
-  },
   module: {
     rules: [
       {

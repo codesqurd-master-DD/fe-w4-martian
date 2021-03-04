@@ -35,14 +35,15 @@ function setEvents() {
     receiveMessage($targetPlanet, char);
   });
 }
-// 여기부터 시작~
 function sendMessage(target, $targetPlanet, message) {
   if (!message.length) {
     console.log("done");
     return;
   }
+  let time = message[0].length;
   setTimeout(() => {
     const char = message.shift();
+    time = char.length;
     const sendEvent = new CustomEvent("send", {
       bubbles: true,
       detail: {
@@ -53,11 +54,13 @@ function sendMessage(target, $targetPlanet, message) {
     target.dispatchEvent(sendEvent);
     // receiveMessage($targetPlanet, char);
     sendMessage(target, $targetPlanet, message);
-  }, 1000);
+  }, time * 3000);
 }
 function rotateCamera({ detail: { char, $targetPlanet } }) {
   const camera = $targetPlanet.querySelector(".camera");
-  // camera rotate
+  console.log(char);
+  // const part = $targetPlanet.querySelector([`data-num=${char}`]);
+  // console.log(part);
 }
 function receiveMessage($targetPlanet, char) {
   const dec = String.fromCharCode(translateHexToDec(char));

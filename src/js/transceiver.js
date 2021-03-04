@@ -16,7 +16,7 @@ function _createParts() {
   return `${numbers
     .map((num, i) => {
       return `<div 
-      class="part" style="transform:rotate(${22.5 * i}deg)">
+      class="part" style="transform:rotate(${22.5 * i}deg)" data-num="${num}">
         ${num}
       </div>
       `;

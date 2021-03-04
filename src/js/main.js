@@ -16,7 +16,7 @@ function initPlanet(planets) {
 }
 function setEvents() {
   const $space = document.getElementById("space");
-  $space.addEventListener("send", rotateCamera);
+  $space.addEventListener("send", receiveMessage);
 
   addEvent($space, "input", ".send>input", ({ target }) => {
     const hex = target.value.split("").map(translateDecToHex);
@@ -29,10 +29,10 @@ function setEvents() {
     sendMessage(target, $targetPlanet, message);
   });
   addEvent($space, "transitionend", ".camera", ({ target }) => {
-    // camera의 rotate가 끝나면 실행
-    const char = getCharFromDegree(target);
-    const $targetPlanet = target.closest(".planet");
-    receiveMessage($targetPlanet, char);
+    console.log("rotate done");
+    // const char = getCharFromDegree(target);
+    // const $targetPlanet = target.closest(".planet");
+    // writeDownChar($targetPlanet, char);
   });
 }
 function sendMessage(target, $targetPlanet, message) {
@@ -40,6 +40,8 @@ function sendMessage(target, $targetPlanet, message) {
     console.log("done");
     return;
   }
+  const $camera = $targetPlanet.querySelector(".camera");
+
   let time = message[0].length;
   setTimeout(() => {
     const char = message.shift();
@@ -48,21 +50,32 @@ function sendMessage(target, $targetPlanet, message) {
       bubbles: true,
       detail: {
         char,
-        $targetPlanet,
+        $camera,
       },
     });
     target.dispatchEvent(sendEvent);
-    // receiveMessage($targetPlanet, char);
+    // writeDownChar($targetPlanet, char);
     sendMessage(target, $targetPlanet, message);
-  }, time * 3000);
+  }, time * 2000 + 2000);
 }
-function rotateCamera({ detail: { char, $targetPlanet } }) {
-  const camera = $targetPlanet.querySelector(".camera");
-  console.log(char);
+function receiveMessage({ detail: { char, $camera } }) {
+  const array = char.split("");
+  array.forEach((char, i) => {
+    console.log(char, i);
+    rotateCamera($camera, char, i);
+  });
   // const part = $targetPlanet.querySelector([`data-num=${char}`]);
   // console.log(part);
 }
-function receiveMessage($targetPlanet, char) {
+function rotateCamera($camera, char, i) {
+  setTimeout(() => {
+    $camera.style.transform = `rotate(${(i + 1) * 60}deg)`;
+  }, 2000 * i);
+}
+function getDegree(char){
+  // here
+}
+function writeDownChar($targetPlanet, char) {
   const dec = String.fromCharCode(translateHexToDec(char));
   $targetPlanet.querySelector(".reception input").value += dec;
 }

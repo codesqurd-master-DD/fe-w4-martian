@@ -92,14 +92,14 @@ body {
     box-sizing: border-box;
   }
   .camera {
-    width: 5rem;
-    height: 5rem;
+    width: 20%;
+    height: 20%;
     background-size: cover;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 40%;
+    left: 40%;
     z-index: 2;
     background-image: url(../img/arrow.png);
+    transition: transform 1s ease;
   }
 }

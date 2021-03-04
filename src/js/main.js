@@ -16,7 +16,7 @@ function initPlanet(planets) {
 }
 function setEvents() {
   const $space = document.getElementById("space");
-  $space.addEventListener("send", rotateTransceiver);
+  $space.addEventListener("send", rotateCamera);
 
   addEvent($space, "input", ".send>input", ({ target }) => {
     const hex = target.value.split("").map(translateDecToHex);
@@ -55,7 +55,7 @@ function sendMessage(target, $targetPlanet, message) {
     sendMessage(target, $targetPlanet, message);
   }, 1000);
 }
-function rotateTransceiver({ detail: { char, $targetPlanet } }) {
+function rotateCamera({ detail: { char, $targetPlanet } }) {
   const camera = $targetPlanet.querySelector(".camera");
   // camera rotate
 }

@@ -4,12 +4,23 @@ export function drawTransceiver($planet) {
 }
 
 function _createParts() {
-  const numbers = [...Array(10), "A", "B", "C", "D", "E", "F"];
-  return numbers
+  const numbers = [
+    ...Array.from({ length: 10 }, (_, i) => i),
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+  ];
+  return `${numbers
     .map((num, i) => {
-      return `<div class="part" style="transform:rotate(${
-        22.5 * i
-      }deg)">${num}</div>`;
+      return `<div 
+      class="part" style="transform:rotate(${22.5 * i}deg)">
+        ${num}
+      </div>
+      `;
     })
-    .join("");
+    .join("")}
+    <div class="camera"><div>`;
 }

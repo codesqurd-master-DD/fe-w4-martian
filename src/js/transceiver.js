@@ -1,10 +1,10 @@
 export function drawTransceiver($planet) {
-  const $target = $planet.querySelector(".transceiver");
+  const $target = $planet.querySelector(".transceiverZone");
   $target.innerHTML = _createParts();
 }
 
 function _createParts() {
-  const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"];
+  const numbers = [...Array(10), "A", "B", "C", "D", "E", "F"];
   return numbers
     .map((num, i) => {
       return `<div class="part" style="transform:rotate(${

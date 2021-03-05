@@ -30,8 +30,6 @@ function setEvents() {
   });
   addEvent($space, "transitionend", ".camera", ({ target }) => {
     console.log("rotate done");
-    // const char = getCharFromDegree(target);
-    // const $targetPlanet = target.closest(".planet");
     // writeDownChar($targetPlanet, char);
   });
 }
@@ -59,20 +57,20 @@ function sendMessage(target, $targetPlanet, message) {
   }, time * 2000 + 2000);
 }
 function receiveMessage({ detail: { char, $camera } }) {
-  const array = char.split("");
-  array.forEach((char, i) => {
-    console.log(char, i);
-    rotateCamera($camera, char, i);
-  });
+  rotateCamera($camera, char);
   // const part = $targetPlanet.querySelector([`data-num=${char}`]);
   // console.log(part);
 }
-function rotateCamera($camera, char, i) {
+function rotateCamera($camera, char) {
+  if (char === "") return;
   setTimeout(() => {
-    $camera.style.transform = `rotate(${(i + 1) * 60}deg)`;
-  }, 2000 * i);
+    const t = char[0];
+    console.log(`rotate ${t}`);
+    // $camera.style.transform = `rotate(${(i + 1) * 60}deg)`;
+    rotateCamera($camera, char.slice(1));
+  }, 2000);
 }
-function getDegree(char){
+function getDegree(char) {
   // here
 }
 function writeDownChar($targetPlanet, char) {

@@ -32,13 +32,11 @@ function setEvents() {
     const $targetPlanet = target.closest(".planet");
     const num = target.dataset.currentNum;
     writeDownNum($targetPlanet, num);
+    blinkPart(num);
   });
 }
 function sendMessage(target, $targetPlanet, message) {
-  if (!message.length) {
-    console.log("done");
-    return;
-  }
+  if (!message.length) return;
   const $camera = $targetPlanet.querySelector(".camera");
 
   let time = message[0].length;
@@ -62,7 +60,6 @@ function receiveMessage({ detail: { char, $camera } }) {
   rotateCamera($camera, char);
 }
 function rotateCamera($camera, char) {
-  console.log("char ", char);
   if (char === "") return;
   setTimeout(() => {
     const num = char[0];
@@ -84,6 +81,10 @@ function getDegree(num) {
 }
 function blinkPart(num) {
   const target = document.querySelector(`[data-num='${num}']`);
+  target.style.backgroundColor = "rgb(45, 176, 194)";
+  setTimeout(() => {
+    target.style.backgroundColor = "rgb(228, 117, 117)";
+  }, 1000);
 }
 function writeDownNum($targetPlanet, num) {
   $targetPlanet.querySelector(".reception input").value += num;
@@ -97,6 +98,7 @@ function getSendMessage($planet) {
   convertedBox.innerText = "";
   return message.split(" ");
 }
+function onTranslateBtn() {}
 function translateDecToHex(dec) {
   return dec.charCodeAt(0).toString(16).toUpperCase();
 }

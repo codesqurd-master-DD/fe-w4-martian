@@ -9,9 +9,9 @@ export default {
   entry: ["./src/js/main.js"],
   watch: true,
   devServer: {
+    port: 8080,
     hot: true,
   },
-
   output: {
     path: path.resolve(__dirname, "dist"),
   },
@@ -20,13 +20,9 @@ export default {
       filename: "[name].css",
     }),
     new HtmlWebPackPlugin({
-      template: "./dist/index.html",
+      template: "./src/index.html",
     }),
   ],
-  devServer: {
-    port: 8080,
-    hot: true,
-  },
   module: {
     rules: [
       {
@@ -42,7 +38,6 @@ export default {
           name: "images/[hash]-[name].[ext]",
         },
       },
-
     ],
   },
 };

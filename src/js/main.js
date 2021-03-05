@@ -29,8 +29,9 @@ function setEvents() {
     sendMessage(target, $targetPlanet, message);
   });
   addEvent($space, "transitionend", ".camera", ({ target }) => {
-    console.log("rotate done");
-    // writeDownChar($targetPlanet, char);
+    const $targetPlanet = target.closest(".planet");
+    const num = target.dataset.currentNum;
+    writeDownNum($targetPlanet, num);
   });
 }
 function sendMessage(target, $targetPlanet, message) {
@@ -52,31 +53,26 @@ function sendMessage(target, $targetPlanet, message) {
       },
     });
     target.dispatchEvent(sendEvent);
-    // writeDownChar($targetPlanet, char);
     sendMessage(target, $targetPlanet, message);
-  }, time * 2000 + 2000);
+  }, time * 2000 + 1000);
 }
 function receiveMessage({ detail: { char, $camera } }) {
-  console.log("receive");
+  const $targetPlanet = $camera.closest(".planet");
+  writeDownNum($targetPlanet, " ");
   rotateCamera($camera, char);
-  // const part = $targetPlanet.querySelector([`data-num=${char}`]);
-  // console.log(part);
 }
 function rotateCamera($camera, char) {
   console.log("char ", char);
   if (char === "") return;
-  let prevDegree = 0;
   setTimeout(() => {
     const num = char[0];
     const degree = getDegree(num);
-    const diff = Math.abs(degree - prevDegree);
     $camera.style.transform = `rotate(${degree}deg)`;
-    prevDegree = degree;
     rotateCamera($camera, char.slice(1));
+    $camera.dataset.currentNum = num;
   }, 2000);
 }
 function getDegree(num) {
-  console.log("getDegree num ", num);
   const target = document.querySelector(`[data-num='${num}']`);
   const st = window.getComputedStyle(target, null);
   const tr = st.getPropertyValue("transform");
@@ -86,9 +82,11 @@ function getDegree(num) {
   const degree = Math.round(Math.atan2(b, a) * (180 / Math.PI));
   return degree;
 }
-function writeDownChar($targetPlanet, char) {
-  const dec = String.fromCharCode(translateHexToDec(char));
-  $targetPlanet.querySelector(".reception input").value += dec;
+function blinkPart(num) {
+  const target = document.querySelector(`[data-num='${num}']`);
+}
+function writeDownNum($targetPlanet, num) {
+  $targetPlanet.querySelector(".reception input").value += num;
 }
 function getPlanet(target) {
   return target.closest(".planet");

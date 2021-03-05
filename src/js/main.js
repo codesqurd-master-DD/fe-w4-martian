@@ -34,28 +34,45 @@ function setEvents() {
     writeDownNum($targetPlanet, num);
     blinkPart(num);
   });
+  addEvent($space, "click", ".translateBtn", ({ target }) => {
+    const $targetPlanet = target.closest(".planet");
+    const receptionBox = $targetPlanet.querySelector(".reception input");
+    const convertArray = receptionBox.value.split(" ");
+    receptionBox.value = "";
+    convertArray.forEach((char) => {
+      receptionBox.value += String.fromCharCode(translateHexToDec(char));
+    });
+  });
 }
 function sendMessage(target, $targetPlanet, message) {
   if (!message.length) return;
   const $camera = $targetPlanet.querySelector(".camera");
-
+  let isDone = false;
   let time = message[0].length;
   setTimeout(() => {
     const char = message.shift();
     time = char.length;
+    if (!message.length) isDone = true;
     const sendEvent = new CustomEvent("send", {
       bubbles: true,
       detail: {
+        $targetPlanet,
         char,
         $camera,
+        isDone,
       },
     });
     target.dispatchEvent(sendEvent);
     sendMessage(target, $targetPlanet, message);
   }, time * 2000 + 1000);
 }
-function receiveMessage({ detail: { char, $camera } }) {
-  const $targetPlanet = $camera.closest(".planet");
+function receiveMessage({ detail: { $targetPlanet, char, $camera, isDone } }) {
+  if (isDone) {
+    setTimeout(() => {
+      onTranslateBtn($targetPlanet);
+    }, char.length * 2000 + 1000);
+  }
+  console.log("char", char);
   writeDownNum($targetPlanet, " ");
   rotateCamera($camera, char);
 }
@@ -63,16 +80,22 @@ function rotateCamera($camera, char) {
   if (char === "") return;
   setTimeout(() => {
     const num = char[0];
-    const degree = getDegree(num);
-    $camera.style.transform = `rotate(${degree}deg)`;
-    rotateCamera($camera, char.slice(1));
+    const targetPart = document.querySelector(`[data-num='${num}']`);
+    const targetdegree = getDegree(targetPart);
+    const cameraDegree = getDegree($camera);
+    $camera.style.transform =
+      cameraDegree !== targetdegree
+        ? `rotate(${targetdegree}deg)`
+        : `rotate(${targetdegree + 1}deg)`;
     $camera.dataset.currentNum = num;
+    return rotateCamera($camera, char.slice(1));
   }, 2000);
 }
-function getDegree(num) {
-  const target = document.querySelector(`[data-num='${num}']`);
+function getDegree(target) {
   const st = window.getComputedStyle(target, null);
   const tr = st.getPropertyValue("transform");
+  if (tr === "none") return 0;
+  
   const values = tr.split("(")[1].split(")")[0].split(",");
   const [a, b] = values;
 
@@ -98,7 +121,9 @@ function getSendMessage($planet) {
   convertedBox.innerText = "";
   return message.split(" ");
 }
-function onTranslateBtn() {}
+function onTranslateBtn($targetPlanet) {
+  $targetPlanet.querySelector(".translateBtn").disabled = false;
+}
 function translateDecToHex(dec) {
   return dec.charCodeAt(0).toString(16).toUpperCase();
 }

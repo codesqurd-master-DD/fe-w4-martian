@@ -5,8 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "webpack -w",
-    "start": "webpack -w && nodemon server.js"
+    "watch:webpack": "npx webpack",
+    "dev": "webpack serve",
+    "server:start": "nodemon server.js",
+    "start": "concurrently \"npm run watch:webpack\" \"npm run server:start\""
   },
   "repository": {
     "type": "git",
@@ -19,17 +21,25 @@
   },
   "homepage": "https://github.com/codesqurd-master-DD/fe-w4-martian#readme",
   "dependencies": {
+    "concurrently": "^6.0.0",
     "express": "^4.17.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.4",
     "css-loader": "^5.1.1",
     "cssnano": "^4.1.10",
+    "file-loader": "^6.2.0",
+    "html-loader": "^2.1.1",
+    "html-webpack-plugin": "^5.2.0",
     "mini-css-extract-plugin": "^1.3.9",
     "node-sass": "^5.0.0",
     "postcss-loader": "^5.0.0",
+    "sass": "^1.32.8",
     "sass-loader": "^11.0.1",
+    "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
     "webpack": "^5.24.2",
-    "webpack-cli": "^4.5.0"
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
   }
 }

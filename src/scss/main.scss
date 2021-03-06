@@ -2,3 +2,104 @@
   padding: 0;
   margin: 0;
 }
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+#space {
+  width: 100%;
+  height: 100%;
+  background-image: url(../img/space.jpg);
+  background-repeat: none;
+  background-size: cover;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  .planet {
+    width: 40%;
+    border-radius: 2rem;
+    background: white;
+    height: 95%;
+    .inputBox {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 2rem;
+
+      input {
+        width: 70%;
+        text-align: center;
+        padding: 0.5rem 0;
+      }
+      .convertedBox {
+        margin-top: 1rem;
+        min-height: 2rem;
+        border: 1px solid black;
+        width: 70%;
+      }
+      button {
+        margin-top: 1rem;
+        padding: 0.5rem 3rem;
+      }
+    }
+  }
+}
+.between {
+  width: 10%;
+  ul {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    li {
+      list-style-type: none;
+      width: 15%;
+      height: 0;
+      padding-bottom: 15%;
+      border-radius: 50%;
+      background: rgb(151, 142, 142);
+    }
+  }
+}
+#watney {
+  position: absolute;
+  left: 0;
+  width: 98px;
+  height: 128px;
+  background-image: url(../img/man.png);
+  background-repeat: none;
+  background-size: cover;
+}
+.transceiverZone {
+  position: relative;
+  width: 25rem;
+  height: 25rem;
+  margin: 0px auto;
+  .part {
+    width: 100%;
+    height: 100%;
+    padding-top: 1rem;
+    font-size: 1.3rem;
+    border-radius: 50%;
+    position: absolute;
+    background: rgb(228, 117, 117);
+    -webkit-clip-path: polygon(40% 0, 50% 50%, 60.8% 0);
+    clip-path: polygon(41% 0, 50% 50%, 59.8% 0);
+    text-align: center;
+    box-sizing: border-box;
+  }
+  .camera {
+    width: 20%;
+    height: 20%;
+    background-size: cover;
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    z-index: 2;
+    transform: none;
+    background-image: url(../img/arrow.png);
+    transition: transform 0.5s ease;
+  }
+}

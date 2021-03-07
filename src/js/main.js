@@ -72,7 +72,6 @@ function receiveMessage({ detail: { $targetPlanet, char, $camera, isDone } }) {
       onTranslateBtn($targetPlanet);
     }, char.length * 2000 + 1000);
   }
-  console.log("char", char);
   writeDownNum($targetPlanet, " ");
   rotateCamera($camera, char);
 }
@@ -95,7 +94,7 @@ function getDegree(target) {
   const st = window.getComputedStyle(target, null);
   const tr = st.getPropertyValue("transform");
   if (tr === "none") return 0;
-  
+
   const values = tr.split("(")[1].split(")")[0].split(",");
   const [a, b] = values;
 

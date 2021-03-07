@@ -5,10 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "watch:webpack": "npx webpack",
-    "dev": "webpack serve",
-    "server:start": "nodemon server.js",
-    "start": "concurrently \"npm run watch:webpack\" \"npm run server:start\""
+    
+    "start" : "node server.js",
+    "heroku-postbuild": "webpack -p"
+
   },
   "repository": {
     "type": "git",

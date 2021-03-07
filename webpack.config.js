@@ -6,7 +6,7 @@ const __dirname = path.resolve();
 export default {
   mode: "development",
   devtool: "source-map",
-  entry: ["./src/js/main.js"],
+  entry: ["./src/js/main2.js"],
   output: {
     path: path.resolve(__dirname, "dist"),
   },

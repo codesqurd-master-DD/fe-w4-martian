@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>치직...ㅊ치.ㅈ.ㅣ직.</title>
+    <script defer src="main.js"></script>
+    <link href="main.css" rel="stylesheet" />
   </head>
   <body>
     <div id="space">
@@ -14,11 +16,11 @@
           <div class="convertedBox"></div>
           <button data-to="earth">지구로 보내기</button>
         </div>
-        <div class="transceiver"></div>
+        <div class="transceiverZone"></div>
         <div class="inputBox reception">
           <div id="watney"></div>
           <input type="text" placeholder="수신 대기 중" />
-          <button disabled>해석하기</button>
+          <button class="translateBtn" disabled>해석하기</button>
         </div>
       </div>
       <div class="between">
@@ -36,10 +38,10 @@
           <div class="convertedBox"></div>
           <button data-to="mars">화성으로 보내기</button>
         </div>
-        <div class="transceiver"></div>
-        <div class="inputBox">
+        <div class="transceiverZone"></div>
+        <div class="inputBox reception">
           <input type="text" placeholder="수신 대기 중" />
-          <button disabled>해석하기</button>
+          <button class="translateBtn" disabled>해석하기</button>
         </div>
       </div>
     </div>

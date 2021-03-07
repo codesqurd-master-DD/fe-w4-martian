@@ -7,11 +7,6 @@ export default {
   mode: "development",
   devtool: "source-map",
   entry: ["./src/js/main.js"],
-  watch: true,
-  devServer: {
-    port: 8080,
-    hot: true,
-  },
   output: {
     path: path.resolve(__dirname, "dist"),
   },

@@ -32,7 +32,7 @@ function setEvents() {
     const $targetPlanet = target.closest(".planet");
     const num = target.dataset.currentNum;
     writeDownNum($targetPlanet, num);
-    blinkPart(num);
+    blinkPart($targetPlanet, num);
   });
   addEvent($space, "click", ".translateBtn", ({ target }) => {
     const $targetPlanet = target.closest(".planet");
@@ -101,8 +101,8 @@ function getDegree(target) {
   const degree = Math.round(Math.atan2(b, a) * (180 / Math.PI));
   return degree;
 }
-function blinkPart(num) {
-  const target = document.querySelector(`[data-num='${num}']`);
+function blinkPart($targetPlanet, num) {
+  const target = $targetPlanet.querySelector(`[data-num='${num}']`);
   target.style.backgroundColor = "rgb(45, 176, 194)";
   setTimeout(() => {
     target.style.backgroundColor = "rgb(228, 117, 117)";
